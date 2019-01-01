@@ -18,7 +18,7 @@ twitter_data = []
 
 #append the relevant data of each s&P500 stock into the comp_data data frame. The historical data dates back 5 years and is taken form the yahoo finance API
 for x in range(0, len(tickers)):
-    comp_data[tickers[x][0]] =  wb.DataReader(tickers[x][0], data_source = 'yahoo', start = '2018-01-01')['Adj Close']# start = '2015-01-01')['Adj Close']
+    comp_data[tickers[x][0]] =  wb.DataReader(tickers[x][0], data_source = 'yahoo', start = '2015-01-01')['Adj Close']
     date_array = comp_data.index.values
 
     for y in range(0, len(date_array)):
@@ -29,8 +29,8 @@ for x in range(0, len(tickers)):
         Day_number = (str((date_array[6] - date_array[5]) / (8.64*10**13))[0])
 
         #in order to get the most accurate result, the program searches for both, the ticker and the actual company name
-        tweetCriteria_ticker = got3.manager.TweetCriteria().setQuerySearch(tickers[x][0]).setSince(Date_prior).setUntil(Date_now)#.setMaxTweets(5)
-        tweetCriteria_name = got3.manager.TweetCriteria().setQuerySearch(tickers[x][1]).setSince(Date_prior).setUntil(Date_now)#.setMaxTweets(5)
+        tweetCriteria_ticker = got3.manager.TweetCriteria().setQuerySearch(tickers[x][0]).setSince(Date_prior).setUntil(Date_now)
+        tweetCriteria_name = got3.manager.TweetCriteria().setQuerySearch(tickers[x][1]).setSince(Date_prior).setUntil(Date_now)
 
         #to get a meaningful output, it is necessary to divide the total tweet mentions by the number of days they were counted on.
         #This is becuase the stock market is closed on weekends and bank holidays
